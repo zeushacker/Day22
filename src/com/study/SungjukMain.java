@@ -30,7 +30,7 @@ class SungjukService {
 		}
 		
 		System.out.println("\n 자료 입력 .............");
-		String[] title = {"국어:", "영어:", "수학"};
+		String[] title = {"국어:", "영어:", "수학:"};
 		
 		// 반드시 메모리 할당을 해야함
 		ss[count] = new SungVO();
@@ -56,7 +56,7 @@ class SungjukService {
 	public char grade(int s) {
 		
 		char c;
-		switch(s) {
+		switch(s/10) {
 		
 		case 10:
 		case 9: c ='A'; break;
@@ -86,10 +86,28 @@ class SungjukService {
 	
 	// 자료 출력
 	public void write() {
+	
+		System.out.println("\n 전체 출력................");
 		
-		System.out.println("출력바랍니다.");
+		ranking();
 		
-		
+		for(int i = 0; i<count; i++) {
+			System.out.print(ss[i].name+"\t\t");
+			for(int j = 0; j<ss[i].score.length;j++) {
+				System.out.printf("%5d", ss[i].score[j]);
+			}
+			System.out.printf("%5d%5d%5d%5c", ss[i].tot, ss[i].avg, ss[i].rank,grade(ss[i].avg));
+	         // 총점, 평균, 석차
+
+			/*
+			// 학점 출력
+			System.out.print("\t\t");
+			for(int j =0; j<ss[i].score.length; j++) {
+				System.out.printf("%5c", grade(ss[i].avg));
+			}
+			*/
+			System.out.println();
+		}
 	}
 	
 	// 자료 검색(이름)
@@ -102,26 +120,17 @@ class SungjukService {
 		
 		for(int i = 0; i<count; i++) {
 			
-		//	if()
-			
-			
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		if(ss[i].name.equals(name)) {
+	       // 문자열은 equals() 를 이용해서 비교해야함
+		   System.out.print(ss[i].name+"\t\t");
+		   for(int j = 0; j<ss[i].score.length; j++) {
+			   System.out.printf("%5d", ss[i].score[j]);
+		   }
+		 }
+		System.out.println();
 	}
-	
-	
+  }
 }
-
-
 
 public class SungjukMain {
 
